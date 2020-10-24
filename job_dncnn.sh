@@ -1,4 +1,4 @@
-#!/bin/bash
+aa#!/bin/bash
 #SBATCH --gres=gpu:1
 #SBATCH --mem=40G
 #SBATCH --output=logs/job_output_%j.out
