@@ -235,8 +235,11 @@ def sdn_model_params_ex5(yy, iso, gain_init, cam, param_inits):
                                 initializer=tf.constant_initializer(beta2_i))  # 0.0
         beta1 = tf.exp(c_i * beta1 * one_cam_params[0])
         beta2 = tf.exp(c_i * beta2 * one_cam_params[1])
-        scale = tf.sqrt(beta1 * yy / gain + beta2)
-    return scale
+        # scale = tf.sqrt(beta1 * yy / gain + beta2)
+        log_scale = tf.log(beta1 * yy / gain + beta2)/2
+        # log_scale = tf.log(beta1 * yy / gain)/2
+
+    return log_scale
 
 
 def sdn_model_params_ex6(yy, iso, gain_init, cam, param_inits):
