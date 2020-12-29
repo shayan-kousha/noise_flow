@@ -180,7 +180,7 @@ def sdn_model_params_ex4(yy, iso, gain_init):
     c = 1
     with tf.variable_scope('sdn_gain', reuse=tf.AUTO_REUSE):
         # gain = tf.get_variable('gain_val', [1], tf.float32, initializer=tf.constant_initializer(gain_init / c))
-        gain = tf.get_variable('gain_val', [1], tf.float32, initializer=tf.constant_initializer(1.0))
+        # gain = tf.get_variable('gain_val', [1], tf.float32, initializer=tf.constant_initializer(1.0))
         iso_vals = tf.constant([100, 400, 800, 1600, 3200], dtype=tf.float32)
         gain_params = tf.get_variable('gain_params', [iso_vals.shape[0]], tf.float32,
                                       initializer=tf.constant_initializer(gain_init / c))
@@ -220,7 +220,7 @@ def sdn_model_params_ex5(yy, iso, gain_init, cam, param_inits):
         one_cam_params = tf.exp(c_i * one_cam_params)
 
         # gain params
-        gain = tf.get_variable('gain_val', [1], tf.float32, initializer=tf.constant_initializer(1.0))
+        # gain = tf.get_variable('log_gain_val', [1], tf.float32, initializer=tf.constant_initializer(0.0))
         iso_vals = tf.constant([100, 400, 800, 1600, 3200], dtype=tf.float32)
         gain_params = tf.get_variable('gain_params', [iso_vals.shape[0]], tf.float32,
                                       initializer=tf.constant_initializer(gain_params_i))  # -5.0 / c_i
@@ -257,7 +257,7 @@ def sdn_model_params_ex6(yy, iso, gain_init, cam, param_inits):
         one_cam_params = tf.exp(c_i * one_cam_params)
 
         # gain params
-        gain = tf.get_variable('gain_val', [1], tf.float32, initializer=tf.constant_initializer(1.0))
+        # gain = tf.get_variable('gain_val', [1], tf.float32, initializer=tf.constant_initializer(1.0))
         iso_vals = tf.constant([100, 400, 800, 1600, 3200], dtype=tf.float32)
         gain_params = tf.get_variable('gain_params', [iso_vals.shape[0]], tf.float32,
                                       initializer=tf.constant_initializer(gain_params_i))  # -5.0 / c_i
@@ -294,7 +294,7 @@ def sdn_model_params_ex7(yy, iso, gain_init, cam, param_inits):  # TODO
         one_cam_params = tf.exp(c_i * one_cam_params)
 
         # gain params
-        gain = tf.get_variable('gain_val', [1], tf.float32, initializer=tf.constant_initializer(1.0))
+        # gain = tf.get_variable('gain_val', [1], tf.float32, initializer=tf.constant_initializer(1.0))
         # iso_vals = tf.constant([100, 400, 800, 1600, 3200], dtype=tf.float32)
         # gain_params = tf.get_variable('gain_params', [iso_vals.shape[0]], tf.float32,
         #                               initializer=tf.constant_initializer(gain_params_i))  # -5.0 / c_i
@@ -435,6 +435,6 @@ def gain_model_params_ex4(iso, gain_init):
     # c = 1
     # init = gain_init
     with tf.variable_scope('sdn_gain', reuse=tf.AUTO_REUSE):
-        scale = tf.get_variable('gain_val', [1], tf.float32, initializer=tf.constant_initializer(1.0))
+        log_scale = tf.get_variable('log_gain_val', [1], tf.float32, initializer=tf.constant_initializer(0.0))
         # scale = tf.get_variable('gain_val')
-    return scale
+    return log_scale
